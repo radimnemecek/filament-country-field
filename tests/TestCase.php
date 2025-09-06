@@ -13,6 +13,7 @@ use Filament\Support\SupportServiceProvider;
 use Filament\Tables\TablesServiceProvider;
 use Filament\Widgets\WidgetsServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\App;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Parfaitementweb\FilamentCountryField\FilamentCountryFieldServiceProvider;
@@ -27,6 +28,8 @@ class TestCase extends Orchestra
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'Parfaitementweb\\Country\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );
+
+        App::setFallbackLocale('en');
     }
 
     protected function getPackageProviders($app)
