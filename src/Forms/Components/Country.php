@@ -19,11 +19,23 @@ class Country extends Select
 
     protected array | Arrayable | string | Closure | null $only = null;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->options($this->getOptions());
+    }
+
     public function getOptions(): array
     {
         $options = $this->evaluate($this->options) ?? [];
 
         if (! empty($options)) {
+
+            if ($options instanceof Arrayable) {
+                $options = $options->toArray();
+            }
+
             return $options;
         }
 
