@@ -2,19 +2,16 @@
 
 namespace Parfaitementweb\FilamentCountryField\Tables\Columns;
 
-use Filament\Tables\Columns\Column;
+use Filament\Tables\Columns\TextColumn;
 use Parfaitementweb\FilamentCountryField\Traits\HasData;
 
-class CountryColumn extends Column
+class CountryColumn extends TextColumn
 {
     use HasData;
 
-    protected string $view = 'filament-country-field::country-column';
-
-    public function nativeCountry()
+    public function formatState(mixed $state): mixed
     {
         $countries = $this->getCountriesList();
-        $state = $this->getState();
 
         return $countries[$state] ?? $state;
     }
