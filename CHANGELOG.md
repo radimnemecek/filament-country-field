@@ -2,6 +2,10 @@
 
 All notable changes to `filament-country-field` will be documented in this file.
 
+## Use native TextColumn instead of custom view - 2025-09-06
+
+Rely on native Filament Table view instead of custom to simply the code.
+
 ## 2.4.0 - 2025-03-26
 
 ### What's Changed
