@@ -21,13 +21,9 @@ jobs:
           - laravel: 12.*
             testbench: 10.*
             carbon: 3.*
-            pest: ^3.4
-            pest_plugin_testbench: ^3.1
           - laravel: 11.*
             testbench: 9.*
             carbon: 3.*
-            pest: ^2.1
-            pest_plugin_testbench: ^2.1
         exclude:
           # Laravel 12 nécessite PHP 8.2 minimum
           - laravel: 12.*
@@ -59,8 +55,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "nesbot/carbon:${{ matrix.carbon }}" "filament/filament:${{ matrix.filament }}" "pestphp/pest:${{ matrix.pest }}" "orchestra/pest-plugin-testbench:${{ matrix.pest_plugin_testbench }}"  --dev
-          composer update --${{ matrix.stability }} --prefer-dist --no-interaction --with-all-dependencies
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update --dev
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: List Installed Dependencies
         run: composer show -D
