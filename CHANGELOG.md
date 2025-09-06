@@ -2,6 +2,18 @@
 
 All notable changes to `filament-country-field` will be documented in this file.
 
+## 2.5.2 - 2025-09-06
+
+### What's Changed
+
+* Use translations for country list for easier customization and caching by @MrSentex in https://github.com/parfaitementweb/filament-country-field/pull/22
+
+### New Contributors
+
+* @MrSentex made their first contribution in https://github.com/parfaitementweb/filament-country-field/pull/22
+
+**Full Changelog**: https://github.com/parfaitementweb/filament-country-field/compare/2.5.1...2.5.2
+
 ## Use native TextColumn instead of custom view - 2025-09-06
 
 Rely on native Filament Table view instead of custom to simply the code.
