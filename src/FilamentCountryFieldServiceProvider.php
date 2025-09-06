@@ -2,7 +2,6 @@
 
 namespace Parfaitementweb\FilamentCountryField;
 
-use Parfaitementweb\FilamentCountryField\Commands\ClearCacheCommand;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;

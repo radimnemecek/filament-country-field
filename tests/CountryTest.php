@@ -145,7 +145,7 @@ it('gets the data from the correct file in English', function () {
     $data = (new Country('country'))
         ->getList();
 
-    expect($data)->toBe(require __DIR__ . "/../resources/lang/en/country.php");
+    expect($data)->toBe(require __DIR__ . '/../resources/lang/en/country.php');
 });
 
 it('gets the data from the correct file in French', function () {
