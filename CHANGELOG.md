@@ -2,6 +2,11 @@
 
 All notable changes to `filament-country-field` will be documented in this file.
 
+## 2.5.3 - 2025-09-06
+
+Filament 4 Fix
+**Full Changelog**: https://github.com/parfaitementweb/filament-country-field/compare/2.5.2...2.5.3
+
 ## 2.5.2 - 2025-09-06
 
 ### What's Changed
