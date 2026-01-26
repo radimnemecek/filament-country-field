@@ -21,6 +21,13 @@ use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 
 class TestCase extends Orchestra
 {
+    /**
+     * The latest test response (used by Testbench).
+     *
+     * @var \Illuminate\Testing\TestResponse|null
+     */
+    protected static $latestResponse;
+
     protected function setUp(): void
     {
         parent::setUp();
