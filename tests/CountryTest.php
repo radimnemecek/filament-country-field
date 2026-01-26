@@ -1,18 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\App;
-use Mockery\MockInterface;
 use Parfaitementweb\FilamentCountryField\Forms\Components\Country;
+use Parfaitementweb\FilamentCountryField\Tests\TestableCountry;
 
 it('returns the country list by default', function () {
-    $mock = $this->partialMock(Country::class, function (MockInterface $mock) {
-        $mock->shouldReceive('getList')
-            ->once()
-            ->andReturn(['CA' => 'Canada', 'US' => 'United States']);
-    });
+    $country = (new TestableCountry('country'))
+        ->setTestCountries(['CA' => 'Canada', 'US' => 'United States']);
 
-    $options = $mock
-        ->getOptions();
+    $options = $country->getOptions();
 
     expect($options)->toBe(['CA' => 'Canada', 'US' => 'United States']);
 });
@@ -26,13 +22,10 @@ it('returns the options list if set', function () {
 });
 
 it('can add element with options', function () {
-    $mock = $this->partialMock(Country::class, function (MockInterface $mock) {
-        $mock->shouldReceive('getList')
-            ->once()
-            ->andReturn(['CA' => 'Canada', 'US' => 'United States']);
-    });
+    $country = (new TestableCountry('country'))
+        ->setTestCountries(['CA' => 'Canada', 'US' => 'United States']);
 
-    $options = $mock
+    $options = $country
         ->add(['MA' => 'Mars'])
         ->getOptions();
 
@@ -40,13 +33,10 @@ it('can add element with options', function () {
 });
 
 it('can exclude element with options', function () {
-    $mock = $this->partialMock(Country::class, function (MockInterface $mock) {
-        $mock->shouldReceive('getList')
-            ->once()
-            ->andReturn(['CA' => 'Canada', 'US' => 'United States']);
-    });
+    $country = (new TestableCountry('country'))
+        ->setTestCountries(['CA' => 'Canada', 'US' => 'United States']);
 
-    $options = $mock
+    $options = $country
         ->exclude(['CA'])
         ->getOptions();
 
@@ -54,13 +44,10 @@ it('can exclude element with options', function () {
 });
 
 it('can map element keys with options', function () {
-    $mock = $this->partialMock(Country::class, function (MockInterface $mock) {
-        $mock->shouldReceive('getList')
-            ->once()
-            ->andReturn(['CA' => 'Canada', 'US' => 'United States']);
-    });
+    $country = (new TestableCountry('country'))
+        ->setTestCountries(['CA' => 'Canada', 'US' => 'United States']);
 
-    $options = $mock
+    $options = $country
         ->map(['CA' => 'CN'])
         ->getOptions();
 
@@ -68,13 +55,10 @@ it('can map element keys with options', function () {
 });
 
 it('can map element keys with options as an array', function () {
-    $mock = $this->partialMock(Country::class, function (MockInterface $mock) {
-        $mock->shouldReceive('getList')
-            ->once()
-            ->andReturn(['CA' => 'Canada', 'US' => 'United States']);
-    });
+    $country = (new TestableCountry('country'))
+        ->setTestCountries(['CA' => 'Canada', 'US' => 'United States']);
 
-    $options = $mock
+    $options = $country
         ->map(['CA' => 'CN', 'US' => 'UN'])
         ->getOptions();
 
@@ -82,26 +66,19 @@ it('can map element keys with options as an array', function () {
 });
 
 it('returns options sorted by keys by default', function () {
-    $mock = $this->partialMock(Country::class, function (MockInterface $mock) {
-        $mock->shouldReceive('getList')
-            ->once()
-            ->andReturn(['US' => 'United States', 'CA' => 'Canada', 'BE' => 'Belgium']);
-    });
+    $country = (new TestableCountry('country'))
+        ->setTestCountries(['US' => 'United States', 'CA' => 'Canada', 'BE' => 'Belgium']);
 
-    $options = $mock
-        ->getOptions();
+    $options = $country->getOptions();
 
     expect($options)->toBe(['BE' => 'Belgium', 'CA' => 'Canada', 'US' => 'United States']);
 });
 
 it('returns options after exclude, add and map elements', function () {
-    $mock = $this->partialMock(Country::class, function (MockInterface $mock) {
-        $mock->shouldReceive('getList')
-            ->once()
-            ->andReturn(['US' => 'United States', 'CA' => 'Canada', 'BE' => 'Belgium']);
-    });
+    $country = (new TestableCountry('country'))
+        ->setTestCountries(['US' => 'United States', 'CA' => 'Canada', 'BE' => 'Belgium']);
 
-    $options = $mock
+    $options = $country
         ->exclude(['CA'])
         ->add(['MA' => 'Mars'])
         ->map(['BE' => 'BN'])
@@ -111,13 +88,10 @@ it('returns options after exclude, add and map elements', function () {
 });
 
 it('ignores empty keys when map is called', function () {
-    $mock = $this->partialMock(Country::class, function (MockInterface $mock) {
-        $mock->shouldReceive('getList')
-            ->once()
-            ->andReturn(['US' => 'United States', 'CA' => 'Canada']);
-    });
+    $country = (new TestableCountry('country'))
+        ->setTestCountries(['US' => 'United States', 'CA' => 'Canada']);
 
-    $options = $mock
+    $options = $country
         ->map(['' => 'CN'])
         ->getOptions();
 
@@ -125,13 +99,10 @@ it('ignores empty keys when map is called', function () {
 });
 
 it('returns default options when methods are called with empty array', function () {
-    $mock = $this->partialMock(Country::class, function (MockInterface $mock) {
-        $mock->shouldReceive('getList')
-            ->once()
-            ->andReturn(['US' => 'United States', 'CA' => 'Canada']);
-    });
+    $country = (new TestableCountry('country'))
+        ->setTestCountries(['US' => 'United States', 'CA' => 'Canada']);
 
-    $options = $mock
+    $options = $country
         ->exclude([])
         ->add([])
         ->map([])
@@ -174,13 +145,10 @@ it('gets the simplified version of the locale name', function () {
 });
 
 it('can filter to only show specific countries', function () {
-    $mock = $this->partialMock(Country::class, function (MockInterface $mock) {
-        $mock->shouldReceive('getList')
-            ->once()
-            ->andReturn(['US' => 'United States', 'CA' => 'Canada', 'BE' => 'Belgium']);
-    });
+    $country = (new TestableCountry('country'))
+        ->setTestCountries(['US' => 'United States', 'CA' => 'Canada', 'BE' => 'Belgium']);
 
-    $options = $mock
+    $options = $country
         ->only(['US', 'CA'])
         ->getOptions();
 
@@ -188,13 +156,10 @@ it('can filter to only show specific countries', function () {
 });
 
 it('shows all countries when only() is called with an empty array', function () {
-    $mock = $this->partialMock(Country::class, function (MockInterface $mock) {
-        $mock->shouldReceive('getList')
-            ->once()
-            ->andReturn(['US' => 'United States', 'CA' => 'Canada', 'BE' => 'Belgium']);
-    });
+    $country = (new TestableCountry('country'))
+        ->setTestCountries(['US' => 'United States', 'CA' => 'Canada', 'BE' => 'Belgium']);
 
-    $options = $mock
+    $options = $country
         ->only([])
         ->getOptions();
 
@@ -202,13 +167,10 @@ it('shows all countries when only() is called with an empty array', function () 
 });
 
 it('shows all countries when only() is passed non-existent country codes', function () {
-    $mock = $this->partialMock(Country::class, function (MockInterface $mock) {
-        $mock->shouldReceive('getList')
-            ->once()
-            ->andReturn(['US' => 'United States', 'CA' => 'Canada', 'BE' => 'Belgium']);
-    });
+    $country = (new TestableCountry('country'))
+        ->setTestCountries(['US' => 'United States', 'CA' => 'Canada', 'BE' => 'Belgium']);
 
-    $options = $mock
+    $options = $country
         ->only(['XX', 'YY'])
         ->getOptions();
 
@@ -216,13 +178,10 @@ it('shows all countries when only() is passed non-existent country codes', funct
 });
 
 it('correctly combines only() with exclude() to filter countries', function () {
-    $mock = $this->partialMock(Country::class, function (MockInterface $mock) {
-        $mock->shouldReceive('getList')
-            ->once()
-            ->andReturn(['US' => 'United States', 'CA' => 'Canada', 'BE' => 'Belgium', 'FR' => 'France']);
-    });
+    $country = (new TestableCountry('country'))
+        ->setTestCountries(['US' => 'United States', 'CA' => 'Canada', 'BE' => 'Belgium', 'FR' => 'France']);
 
-    $options = $mock
+    $options = $country
         ->only(['US', 'CA', 'BE'])
         ->exclude(['BE'])
         ->getOptions();
@@ -231,13 +190,10 @@ it('correctly combines only() with exclude() to filter countries', function () {
 });
 
 it('returns filtered options after only(), exclude(), add() and map() operations', function () {
-    $mock = $this->partialMock(Country::class, function (MockInterface $mock) {
-        $mock->shouldReceive('getList')
-            ->once()
-            ->andReturn(['US' => 'United States', 'CA' => 'Canada', 'BE' => 'Belgium', 'FR' => 'France']);
-    });
+    $country = (new TestableCountry('country'))
+        ->setTestCountries(['US' => 'United States', 'CA' => 'Canada', 'BE' => 'Belgium', 'FR' => 'France']);
 
-    $options = $mock
+    $options = $country
         ->only(['US', 'CA', 'BE'])
         ->exclude(['BE'])
         ->add(['MA' => 'Mars'])
@@ -248,13 +204,10 @@ it('returns filtered options after only(), exclude(), add() and map() operations
 });
 
 it('can filter valid countries when only() contains a mix of valid and invalid codes', function () {
-    $mock = $this->partialMock(Country::class, function (MockInterface $mock) {
-        $mock->shouldReceive('getList')
-            ->once()
-            ->andReturn(['US' => 'United States', 'CA' => 'Canada', 'BE' => 'Belgium']);
-    });
+    $country = (new TestableCountry('country'))
+        ->setTestCountries(['US' => 'United States', 'CA' => 'Canada', 'BE' => 'Belgium']);
 
-    $options = $mock
+    $options = $country
         ->only(['US', 'XX'])
         ->getOptions();
 
