@@ -2,6 +2,10 @@
 
 All notable changes to `filament-country-field` will be documented in this file.
 
+## 2.5.5 - 2026-01-26
+
+Filament V5 Support
+
 ## 2.5.4 - 2025-09-10
 
 Fix https://github.com/parfaitementweb/filament-country-field/issues/37
